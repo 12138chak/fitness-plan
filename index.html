@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1116">
+<title>我的哑铃健身计划</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- ===================== 1. 建档 ===================== -->
+<section class="view active" id="view-setup">
+  <div class="wrap narrow">
+    <header class="brand">
+      <div class="logo">哑铃</div>
+      <div>
+        <h1>家庭哑铃健身教练</h1>
+        <p class="muted small">器材只有哑铃 + 单杠也没关系。花 1 分钟填几个数字，我给你排出能长期执行、每天知道该练什么的计划。</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>你的身体数据</h2>
+      <div class="form-grid">
+        <label class="mini wide"><span>身高（cm）</span>
+          <input type="number" id="in-height" inputmode="decimal" placeholder="174"></label>
+        <label class="mini wide"><span>体重（kg）</span>
+          <input type="number" step="0.1" id="in-weight" inputmode="decimal" placeholder="59"></label>
+        <label class="mini wide"><span>年龄</span>
+          <input type="number" id="in-age" inputmode="numeric" placeholder="22"></label>
+      </div>
+      <div class="field">
+        <span class="field-label">性别（影响基础代谢估算）</span>
+        <div class="chip-row" id="f-sex"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>训练经验</h2>
+      <div class="chip-row stack" id="f-exp"></div>
+    </section>
+
+    <section class="card">
+      <h2>每周能训练几天</h2>
+      <div class="chip-row" id="f-days"></div>
+      <div class="field">
+        <span class="field-label">具体哪几天练（点选）</span>
+        <div class="chip-row" id="f-weekdays"></div>
+        <div class="muted small" id="wd-hint"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>你的目标</h2>
+      <div class="chip-row stack" id="f-goal"></div>
+    </section>
+
+    <section class="card">
+      <h2>器材情况（可选，填了重量建议更准）</h2>
+      <div class="form-grid">
+        <label class="mini wide"><span>单只哑铃最大重量（kg）</span>
+          <input type="number" step="0.5" id="in-dbmax" inputmode="decimal" placeholder="不确定就留空"></label>
+        <label class="mini wide"><span>现在能连续做几个引体向上</span>
+          <input type="number" id="in-pullups" inputmode="numeric" placeholder="0"></label>
+      </div>
+      <p class="muted small">只有哑铃和单杠完全够用。最多再需要一把椅子或一个沙发（做保加利亚分腿蹲、臀桥、上斜卧推）。</p>
+    </section>
+
+    <div class="actions">
+      <button class="btn primary big" id="btn-build">算一下我该练三分化还是四分化</button>
+    </div>
+    <p class="muted tiny center">数据只存在你自己的浏览器里，不联网、不上传。</p>
+  </div>
+</section>
+
+<!-- ===================== 2. 推荐结果 ===================== -->
+<section class="view" id="view-recommend"></section>
+
+<!-- ===================== 3. 主应用 ===================== -->
+<section class="view" id="view-app">
+  <main class="app-main">
+    <section class="page active" id="page-today"></section>
+    <section class="page" id="page-plan"></section>
+    <section class="page" id="page-progress"></section>
+    <section class="page" id="page-library"></section>
+    <section class="page" id="page-me"></section>
+  </main>
+</section>
+
+<nav id="tabbar" class="hidden">
+  <button data-tab="today" class="on"><i>🏋️</i><b>今日</b></button>
+  <button data-tab="plan"><i>🗓️</i><b>计划</b></button>
+  <button data-tab="progress"><i>📈</i><b>进度</b></button>
+  <button data-tab="library"><i>📚</i><b>动作</b></button>
+  <button data-tab="me"><i>👤</i><b>我的</b></button>
+</nav>
+
+<div id="restbar" class="hidden">
+  <div class="rest-info">
+    <span class="muted small">组间休息</span>
+    <b id="rest-time">2:00</b>
+  </div>
+  <div class="rest-acts">
+    <button class="btn ghost small" id="btn-rest-add">+30 秒</button>
+    <button class="btn primary small" id="btn-rest-skip">下一组</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="diagrams.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
